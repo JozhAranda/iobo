@@ -17,15 +17,7 @@ $(function() {
         $("body").load("home.html").hide().fadeIn(1500).delay(6000);
         window.location.href = "home.html";
       },
-      error : function(xhr, textStatus, errorThrown ) {
-        if (textStatus == 'timeout') {
-          this.tryCount++;
-          if (this.tryCount <= this.retryLimit) {
-            $.ajax(this);
-            return;
-          }
-          return;
-        }
+      error: function(xhr, textStatus, errorThrown ) {
         $("#submitSesion").val('Iniciar sesión');
         if (xhr.status == 500) {
           $.snackbar({

@@ -48,7 +48,6 @@
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:splash src="splash.png" />
 
     <!-- Third party plugins -->
     <!--plugin name="com.megster.cordova.bluetoothserial" spec="0.2.2" source="pgb" /-->
