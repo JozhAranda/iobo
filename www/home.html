@@ -33,11 +33,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/snackbar.min.js"></script>
-    <script src="assets/js/api-home.js" defer="defer"></script>
+    <script src="assets/js/api-home.js"></script>
 
     <script type="text/javascript" charset="utf-8">
       $(function() {
-        $.getJSON("http://localhost:8000/api/v1/jobs",
+        $.getJSON("https://iobo.herokuapp.com/api/v1/jobs",
     			function(data) {
     				var html;
 

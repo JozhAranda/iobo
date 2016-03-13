@@ -8,7 +8,7 @@ $(function() {
 
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:8000/api/v1/customer',
+      url: 'https://iobo.herokuapp.com/api/v1/customer',
       async: true,
       crossDomain: true,
       data: dataRegister,

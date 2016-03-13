@@ -9,7 +9,7 @@ $(function()
 
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:8000/api/v1/jobs/' + value,
+      url: 'https://iobo.herokuapp.com/api/v1/jobs/' + value,
       async: true,
       crossDomain: true,
       cache: false,
