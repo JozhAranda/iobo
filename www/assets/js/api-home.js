@@ -1,6 +1,6 @@
-$(function()
+$(function() {
   $('a.viewDiscover').on('click touch', function(event) {
-    console.log('12345');
+
     event.preventDefault();
 
     var value = $(this).attr('title');

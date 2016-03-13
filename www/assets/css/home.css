@@ -1,7 +1,5 @@
 body {
-  /*background: #eee url('../img/bg.jpg') no-repeat bottom right fixed; */
   background-color: #ECEFF1;
-  /*background-position-y: 20px;*/
 }
 .loader {
   position: fixed;

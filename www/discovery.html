@@ -23,7 +23,7 @@
           <img src="assets/img/logo.png" class="img img-responsive headerImg" alt="Jobo" title="Jobo" />
         </div>
       </div>
-      <div class="container" style="margin-top: 100px;">
+      <div class="container" style="margin-top: 110px;">
         <!--div class="jumbotron">
           <div class="container text-center">
             <h1 class="page-header">Vacante 1</h1>
@@ -34,14 +34,13 @@
           <div class="col-md-4 well pricing-table">
             <div class="pricing-table-holder">
               <center>
-                <img src="http://www.placehold.it/100X100" class="img-responsive img-circle" alt="">
-                <h3>Vacante 1</h3>
-                <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <h3 id="name"></h3>
+                <p class="caption" id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               </center>
             </div>
             <div class="custom-button-group" style="">
               <div class="col-md-4 col-sm-3" style="padding:0;">
-                <button class="btn btn-primary btn-block" style="border-radius:0;">Consiguelo</button>
+                <button class="btn btn-primary btn-block" id="getJob" style="border-radius:0;">Consiguelo</button>
               </div>
             </div>
 
@@ -65,27 +64,18 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/snackbar.min.js"></script>
-    <script src="assets/js/wizard.js"></script>
-    <script src="assets/js/moreInput.js"></script>
-    <!--script src="assets/js/app-webservice.js"></script>
-    <script src="assets/js/geolocation.js"></script-->
+    <script src="assets/js/api-discover.js"></script>
+    <script>
+      $(function() {
+        $('#getJob').on('click touch', function(event) {
+          event.preventDefault();
 
-    <script type="text/javascript" charset="utf-8">
-      document.addEventListener("deviceready", onDeviceReady, false);
-      function onDeviceReady() {
-        //var element = document.getElementById('Imei');
-        //element.value = device.uuid;
-      }
+          $.snackbar({
+            content: "Tu informaci&oacute;n ha sido compartida con el empleador.",
+            timeout: 5000
+          });
+        });
+      });
     </script>
-		<div id="fb-root"></div>
-		<script>
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=603409329669318";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-		</script>
   </body>
 </html>

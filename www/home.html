@@ -13,6 +13,12 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+      body {
+        font-size: 0;
+        color: #ECEFF1;
+      }
+    </style>
   </head>
 
   <body onload="init()">
@@ -23,7 +29,7 @@
           <img src="assets/img/logo.png" class="img img-responsive headerImg" alt="Jobo" title="Jobo" />
         </div>
       </div>
-      <div class="container" style="margin-top: 100px;">
+      <div class="container" style="margin-top: 110px;">
         <div class="row viewJob">
         </div>
       </div>
@@ -33,27 +39,78 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/snackbar.min.js"></script>
-    <script src="assets/js/api-home.js"></script>
 
     <script type="text/javascript" charset="utf-8">
       $(function() {
-        $.getJSON("https://iobo.herokuapp.com/api/v1/jobs",
-    			function(data) {
-    				var html;
+        $.getJSON("https://iobo.herokuapp.com/api/v1/jobs", function(data) {
+  				var html;
+  				$.each(data, function(key, element) {
+              html += '<div class="col-xs-6">';
+              html += '<div class="thumbnail">';
+              html += '<div class="caption">';
+              html += '<h4>'+ element.name +'</h4>';
+              html += '<p style="color: #555;font-size: 16px;">' + element.description.substring(0, 45) + '</p>';
+              html += '<a class="btn btn-default btn-sm pull-right fb" style="background: #34495e;color: #fff;" href="mailto:hello@iobo.com?subject='+ element.name +'">Recomendar</a>';
+              html += '<a class="btn btn-primary btn-sm viewDiscover" title="' + element.id + '">Descubre</a>';
+    					html += '</div></div></div>';
+          });
 
-    				$.each(data, function(key, element) {
-                html += '<div class="col-xs-6">';
-                html += '<div class="thumbnail">';
-                html += '<div class="caption">';
-                html += '<h4>'+ element.name +'</h4>';
-                html += '<p>' + element.description.substring(0, 70) + '</p>';
-                html += '<a class="btn btn-default btn-sm pull-right fb" style="background: #34495e;color: #fff;" href="mailto:hello@iobo.com?subject='+ element.name +'">Recomendar</a>';
-                html += '<a class="btn btn-primary btn-sm viewDiscover" title="' + element.id + '">Descubre</a>';
-      					html += '</div></div></div>';
-
-            });
-            $('.viewJob').html(html);
+          $('.viewJob').html(html);
     		});
+
+        var my_delay = 1000;
+        function redirect_function() {
+
+          $('a.viewDiscover').on('click touch', function(event) {
+
+            event.preventDefault();
+
+            var value = $(this).attr('title');
+
+            console.log(value);
+
+            $.ajax({
+              method: 'GET',
+              url: 'http://localhost:8000/api/v1/jobs/' + value,
+              async: true,
+              crossDomain: true,
+              cache: false,
+              success: function(data) {
+                var name         = data.name;
+                var description  = data.description;
+                var dataUrl = "?name="+encodeURIComponent(name)+"&description="+encodeURIComponent(description);
+
+                if(dataUrl) {
+                  $("body").load("discovery.html").hide().fadeIn(1500).delay(6000);
+                  window.location.href = "discovery.html" + dataUrl;
+                }
+              },
+              error : function(xhr, textStatus, errorThrown ) {
+                if (textStatus == 'timeout') {
+                  this.tryCount++;
+                  if (this.tryCount <= this.retryLimit) {
+                    $.ajax(this);
+                    return;
+                  }
+                  return;
+                }
+                $("#submitSesion").val('Iniciar sesión');
+                if (xhr.status == 500) {
+                  $.snackbar({
+                    content: "Ocurrio un error, no desistas e intentalo nuevamente",
+                    timeout: 5000
+                  });
+                } else {
+                  $.snackbar({
+                    content: "Usuario y/o contraseña son invalidas, intentalo nuevamente",
+                    timeout: 5000
+                  });
+                }
+              }
+            });
+          });
+        }
+        setTimeout(redirect_function, my_delay);
       });
     </script>
   </body>

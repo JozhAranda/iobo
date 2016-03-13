@@ -51,7 +51,7 @@
 }
 @media only screen and (max-width: 360px) {
 	.headerImg {
-    width: 120px;
+    width: 160px;
 	}
 	.headerText {
 	    margin: 0 !important;
