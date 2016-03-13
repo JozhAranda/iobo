@@ -35,7 +35,7 @@
 	    margin-left: 20px;
 	}
 	.headerImg {
-		width: 160px;
+		width: 180px;
 	}
 	.col-xs-6 {
 		width: 100%;
@@ -46,7 +46,7 @@
 }
 @media only screen and (max-width: 420px) {
 	.headerImg {
-    width: 120px;
+    width: 180px;
 	}
 }
 @media only screen and (max-width: 360px) {
